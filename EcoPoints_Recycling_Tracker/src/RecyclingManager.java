@@ -27,6 +27,26 @@ public class RecyclingManager {
         System.out.println("Household registered successfully: " + household + " Name: " + name);
     }
 
+
+    // Task 4: Adding Houshold recycling event data
+    public void logRecyclingEvent(String householdId, Strign materialType, double weightKg){
+        Household household = householdMap.get(householdId);
+        if(household == null) {
+            System.out.println("Household with ID " + householdId + " not found.");
+            return;
+        }
+        if(weightKg <= 0){
+            System.out.println("Weight must be above 0kgs.");
+            return;
+        }
+        RecyclingEvent event = new RecyclingEvent(materialType, weightKg, LocalDate.now());
+        household.addRecyclingEvent(event);
+
+        System.out.println("Event logged! Household ID: " + householdId + 
+                " earned " + event.getPointsEarned() + " EcoPoints for " + weightKg + " kg of " + materialType + ".");
+    }
+
+    
     // Getter for testing/verification
     public Map<String, Household> getHouseholdMap() {
         return householdMap;
