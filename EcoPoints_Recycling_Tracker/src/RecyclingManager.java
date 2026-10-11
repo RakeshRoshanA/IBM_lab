@@ -104,6 +104,37 @@ public class RecyclingManager {
             }
         }
     }
+
+    // Task 7: Generate community reports
+    public void generateReports() {
+        if (householdMap.isEmpty()) {
+            System.out.println("No data available to generate reports.");
+            return;
+        }
+
+        double totalCommunityWeight = 0.0;
+        Household topRecycler = null;
+
+        for (Household h : householdMap.values()) {
+            totalCommunityWeight += h.getTotalWeightRecycled();
+
+            if (topRecycler == null || h.getTotalPoints() > topRecycler.getTotalPoints()) {
+                topRecycler = h;
+            }
+        }
+
+        System.out.println("\n========== COMMUNITY RECYCLING REPORT ==========");
+        System.out.printf("Total Community Recycled Weight: %.2f kg\n", totalCommunityWeight);
+        
+        if (topRecycler != null && topRecycler.getTotalPoints() > 0) {
+            System.out.println("Top Recycler: " + topRecycler.getName() + 
+                    " (ID: " + topRecycler.getId() + ") with " + topRecycler.getTotalPoints() + " EcoPoints!");
+        } else {
+            System.out.println("Top Recycler: No points accumulated yet.");
+        }
+        System.out.println("================================================");
+    }
+    
     // Getter for verification
     public Map<String, Household> getHouseholdMap() {
         return householdMap;
