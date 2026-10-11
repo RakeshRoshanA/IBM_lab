@@ -1,18 +1,19 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Household implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private string id;
+    private String id;
     private String name;
     private String address;
-    private Local joinDate;
+    private LocalDate joinDate;
     private List<RecyclingEvent> events;
 
-    private Household(String id, String name, String address, LocalDate joinDate) {
+    // Constructor (Must be public so RecyclingManager can access it)
+    public Household(String id, String name, String address, LocalDate joinDate) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -20,45 +21,53 @@ public class Household implements Serializable {
         this.events = new ArrayList<>();
     }
 
+    // Add a recycling event to this household's list
+    public void addEvent(RecyclingEvent event) {
+        this.events.add(event);
+    }
+
+    // Getters
     public String getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
+
     public String getAddress() {
         return address;
     }
+
     public LocalDate getJoinDate() {
         return joinDate;
     }
+
     public List<RecyclingEvent> getEvents() {
         return events;
     }
 
-    public void addRecyclingEvent(RecyclingEvent event) {
-        events.add(event);
-    }
-
-    public double getTotalWeightRecycled(){
-        double total = 0;
-        for(RecyclingEvent event : events){
-            total += event.getWeightKg();
-        }
-        return total;
-    }
-
-    public int getTotalPointsEarned(){
+    // Calculate total points earned by this household
+    public int getTotalPoints() {
         int total = 0;
-        for(RecyclingEvent event : events){
+        for (RecyclingEvent event : events) {
             total += event.getPointsEarned();
         }
         return total;
     }
 
+    // Calculate total weight recycled by this household
+    public double getTotalWeightRecycled() {
+        double totalWeight = 0.0;
+        for (RecyclingEvent event : events) {
+            totalWeight += event.getWeightKg();
+        }
+        return totalWeight;
+    }
+
     @Override
     public String toString() {
-        return String.format("Household ID: %s, Name: %s, Address: %s, Join Date: %s, Total Weight Recycled: %.2f kg, Total Points Earned: %d", 
-            id, name, address, joinDate.toString(), getTotalWeightRecycled(), getTotalPointsEarned());
+        return "ID: " + id + " | Name: " + name + " | Address: " + address + 
+               " | Join Date: " + joinDate + " | Total Points: " + getTotalPoints();
     }
 }
