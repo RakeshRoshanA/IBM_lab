@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Household implements Serializable {
-    private static fial long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private string id;
     private String name;
@@ -41,7 +41,7 @@ public class Household implements Serializable {
     }
 
     public double getTotalWeightRecycled(){
-        double total = 0'
+        double total = 0;
         for(RecyclingEvent event : events){
             total += event.getWeightKg();
         }
