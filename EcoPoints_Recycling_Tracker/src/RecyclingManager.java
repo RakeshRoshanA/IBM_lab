@@ -70,7 +70,40 @@ public class RecyclingManager {
             System.out.println("Error loading data: " + e.getMessage());
         }
     }
+    // Task 6: Display all registered households
+    public void displayAllHouseholds() {
+        if (householdMap.isEmpty()) {
+            System.out.println("No households registered yet.");
+            return;
+        }
+        System.out.println("\n--- Registered Households ---");
+        for (Household h : householdMap.values()) {
+            System.out.println(h);
+        }
+    }
 
+    // Task 6: Display details and recycling history for a specific household
+    public void displayHouseholdDetails(String householdId) {
+        Household h = householdMap.get(householdId);
+        if (h == null) {
+            System.out.println("Household with ID " + householdId + " not found.");
+            return;
+        }
+
+        System.out.println("\n--- Household Details ---");
+        System.out.println("ID: " + h.getId() + " | Name: " + h.getName() + " | Address: " + h.getAddress());
+        System.out.println("Join Date: " + h.getJoinDate());
+        System.out.println("Total Points: " + h.getTotalPoints() + " | Total Weight Recycled: " + h.getTotalWeightRecycled() + " kg");
+        
+        System.out.println("Recycling History:");
+        if (h.getEvents().isEmpty()) {
+            System.out.println("  No recycling events logged yet.");
+        } else {
+            for (RecyclingEvent event : h.getEvents()) {
+                System.out.println("  - " + event);
+            }
+        }
+    }
     // Getter for verification
     public Map<String, Household> getHouseholdMap() {
         return householdMap;
