@@ -1,0 +1,35 @@
+# 🌱 EcoPoints Recycling Tracker
+
+A Java-based console application designed to manage household recycling activities, calculate eco-points based on material weights, persist records using binary serialization, and generate community-wide recycling reports.
+
+---
+
+## 🚀 Features
+
+- **Household Management**: Register new households with unique IDs, names, addresses, and automatic join-date timestamps.
+- **Recycling Event Logging**: Log drop-offs for various materials (plastic, glass, metal, paper) and automatically award eco-points.
+- **Data Persistence**: Automatically saves and loads all system data using Java Object Serialization (`HouseholdData.ser`).
+- **Detailed History & Reports**: View individual household recycling histories, total points, total community weight recycled, and identify the top recycler.
+- **Robust Error Handling**: Handles invalid inputs, incorrect file paths, and unexpected formatting errors gracefully.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Language**: Java
+- **Concepts**: Object-Oriented Programming (OOP), Collections Framework (`HashMap`, `ArrayList`), File I/O & Serialization, Exception Handling
+- **Environment**: Java Development Kit (JDK), Visual Studio Code, Windows Terminal / PowerShell
+
+---
+
+## 📂 Project Structure
+
+```text
+EcoPoints_Recycling_Tracker/
+│
+└── src/
+    ├── Household.java          # Household data model & point calculations
+    ├── RecyclingEvent.java     # Recycling transaction model & point conversion logic
+    ├── RecyclingManager.java   # Core business logic, HashMap storage, & file persistence
+    ├── Main.java               # CLI interactive menu & exception handling
+    └── HouseholdData.ser       # Generated binary storage file (created upon saving)

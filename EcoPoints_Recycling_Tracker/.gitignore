@@ -1,0 +1,5 @@
+# Compiled Java class files
+*.class
+
+# Saved binary data persistence file
+*.ser
